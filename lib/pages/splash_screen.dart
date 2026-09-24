@@ -9,37 +9,51 @@ class SplashScreen extends StatefulWidget {
   State<SplashScreen> createState() => _SplashScreenState();
 }
 
-
 class _SplashScreenState extends State<SplashScreen> {
-@override
-void initState() {
-  super.initState();
-  _continueToApp();
-}
+  @override
+  void initState() {
+    super.initState();
+    _continueToApp();
+  }
 
-Future<void> _continueToApp ()async{
-  await Future<void>.delayed(Duration(microseconds: App.standard));
+  Future<void> _continueToApp() async {
+    await Future<void>.delayed(AppDurations.splashDisplay);
 
-  if(!mounted)return;
+    if (!mounted) return;
 
-  Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context) {
-    return const HomeScreen();
-  },));
-}
+    Navigator.of(context).pushReplacement(
+      MaterialPageRoute<void>(builder: (_) => const HomeScreen()),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    final colors = theme.colorScheme;
+
     return Scaffold(
-      body: Container(
-        height: double.infinity,
-        width: double.infinity,
-        color: AppColors.primaryBg,
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Image.asset('assets/image/logo.png'),
-            Text("Skillz Log", style: KTextStyle.headerTextStyle,),
-            Text("Small steps, visible progress", style: KTextStyle.descTextStyle,)
-          ],
+      backgroundColor: colors.primary,
+      body: Center(
+        child: SafeArea(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            mainAxisSize: MainAxisSize.max,
+            children: [
+              Image.asset('assets/images/logo.png', width: 96, height: 96),
+              const SizedBox(height: 20),
+              Text(AppStrings.appName, style: theme.textTheme.headlineMedium?.copyWith(
+                color: colors.onPrimary
+              )),
+              const SizedBox(height: 8),
+              Text(
+                'Small steps, visible progress',
+                style: theme.textTheme.bodyMedium?.copyWith(
+                  color: colors.onPrimary.withValues(alpha: 0.75),
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );

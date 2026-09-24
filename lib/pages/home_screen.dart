@@ -5,8 +5,18 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    final isDarkMode = theme.brightness == Brightness.dark;
+
     return Scaffold(
-      body: Center(child: Text("Home Screen"),),
+      appBar: AppBar(
+      ),
+      body: Center(
+        child: Text(
+          isDarkMode ? 'Dark mode' : 'Light mode',
+          style: theme.textTheme.headlineMedium,
+        ),
+      ),
     );
   }
 }

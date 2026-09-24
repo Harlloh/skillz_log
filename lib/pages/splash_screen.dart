@@ -1,30 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:skillz_log/data/constants.dart';
-import 'package:skillz_log/pages/home_screen.dart';
 
-class SplashScreen extends StatefulWidget {
+class SplashScreen extends StatelessWidget {
   const SplashScreen({super.key});
-
-  @override
-  State<SplashScreen> createState() => _SplashScreenState();
-}
-
-class _SplashScreenState extends State<SplashScreen> {
-  @override
-  void initState() {
-    super.initState();
-    _continueToApp();
-  }
-
-  Future<void> _continueToApp() async {
-    await Future<void>.delayed(AppDurations.splashDisplay);
-
-    if (!mounted) return;
-
-    Navigator.of(context).pushReplacement(
-      MaterialPageRoute<void>(builder: (_) => const HomeScreen()),
-    );
-  }
 
   @override
   Widget build(BuildContext context) {

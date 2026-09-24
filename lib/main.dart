@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:skillz_log/auth/auth_gate.dart';
 import 'package:skillz_log/data/app_theme.dart';
 import 'package:skillz_log/data/constants.dart';
 import 'package:skillz_log/data/theme_controller.dart';
@@ -21,7 +22,7 @@ class MyApp extends StatelessWidget {
         darkTheme: AppTheme.dark,
         themeMode: selectedThemeMode, //this is also equals to AppThemeController.mode.value
         debugShowCheckedModeBanner: false,
-        home: const SplashScreen(),
+        home: AuthGate(),
       ),
     );
   }

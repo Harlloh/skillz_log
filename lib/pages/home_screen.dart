@@ -10,6 +10,14 @@ class HomeScreen extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(
+        // actions: [
+        //   IconButton(
+        //     onPressed: () {
+        //       AppThemeController.setDarkMode(!isDarkMode);
+        //     },
+        //     icon: Icon(Icons.swipe),
+        //   ),
+        // ],
       ),
       body: Center(
         child: Text(

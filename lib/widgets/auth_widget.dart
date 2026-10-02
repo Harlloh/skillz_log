@@ -29,7 +29,7 @@ class _AuthWidgetState extends State<AuthWidget> {
                   label,
                   style: theme.textTheme.titleMedium?.copyWith(
                     color: selected
-                        ? colors.secondary
+                        ? colors.primary
                         : colors.onSurface.withValues(alpha: 0.65),
                   ),
                 ),

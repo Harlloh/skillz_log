@@ -23,4 +23,12 @@ abstract final class AppStrings {
   static const String appName = "Skillz Log";
 }
 
-enum AuthMode { signIn, createAccount }
+enum AuthMode {
+  signIn(key: 'signIn', label: 'Sign-In'),
+  createAccount(key: 'createAccount', label: 'Create Account');
+
+  const AuthMode({required this.key, required this.label});
+
+  final String key;
+  final String label;
+}

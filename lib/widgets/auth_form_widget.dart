@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:skillz_log/data/constants.dart';
+import 'package:skillz_log/utils/utils.dart';
 
 //
 class AuthFormWidget extends StatefulWidget {
@@ -13,6 +14,7 @@ class AuthFormWidget extends StatefulWidget {
 
 class _AuthFormWidgetState extends State<AuthFormWidget> {
   bool showPassword = false;
+  bool isLoading = false;
   final _formKey = GlobalKey<FormState>();
   final _emailController = TextEditingController();
   final _passwordController = TextEditingController();
@@ -30,7 +32,39 @@ class _AuthFormWidgetState extends State<AuthFormWidget> {
     final theme = Theme.of(context);
     final colors = theme.colorScheme;
 
-    // Future<void> onSubmit() {}
+    Future<void> _submitEmailAuth() async {
+      setState(() {
+        isLoading = true;
+      });
+      print(widget.selectedMode);
+      await Future<void>.delayed(Duration(milliseconds: 1200));
+      setState(() {
+        isLoading = false;
+      });
+      if (!_formKey.currentState!.validate()) {
+        return;
+      }
+
+      final email = _emailController.text.trim();
+      final password = _passwordController.text;
+      final username = _userNameController.text.trim();
+
+      if (widget.selectedMode == AuthMode.signIn) {
+        // normal email sign in process
+      } else {
+        // normal create account
+      }
+    }
+
+    Future<void> _submitGoogleAuth() async {
+      print(widget.selectedMode);
+      if (widget.selectedMode == AuthMode.signIn) {
+        // normal email sign in process
+      } else {
+        // normal create account
+      }
+    }
+
     return Form(
       key: _formKey,
       child: Padding(
@@ -77,10 +111,7 @@ class _AuthFormWidgetState extends State<AuthFormWidget> {
                 floatingLabelBehavior: FloatingLabelBehavior.always,
               ),
               validator: (value) {
-                if (value == null || value.isEmpty) {
-                  return 'Email is required';
-                }
-                return null;
+                return emailValidator(value);
               },
             ),
             SizedBox(height: 30),
@@ -109,21 +140,19 @@ class _AuthFormWidgetState extends State<AuthFormWidget> {
               ),
               obscureText: !showPassword,
               validator: (value) {
-                if (value == null || value.isEmpty) {
-                  return 'Password is required';
-                }
-                return null;
+                return passwordValidator(
+                  value,
+                  isCreateAccount:
+                      widget.selectedMode == AuthMode.createAccount,
+                );
               },
             ),
             SizedBox(height: 50),
             SizedBox(
               width: double.infinity,
               child: ElevatedButton(
-                onPressed: () {
-                  if (_formKey.currentState!.validate()) {
-                    // Submit form
-                  }
-                },
+                onPressed: isLoading ? null : _submitEmailAuth,
+
                 style: ElevatedButton.styleFrom(
                   backgroundColor: colors.secondary,
                   foregroundColor: Colors.white,
@@ -153,7 +182,7 @@ class _AuthFormWidgetState extends State<AuthFormWidget> {
             SizedBox(
               width: double.infinity,
               child: OutlinedButton.icon(
-                onPressed: () {},
+                onPressed: _submitGoogleAuth,
                 icon: const Text(
                   'G',
                   style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold),

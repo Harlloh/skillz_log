@@ -4,7 +4,12 @@ import 'package:flutter/material.dart';
 /// introduces a new semantic color role.
 abstract final class AppColors {
   static const primary = Color(0xFF133924);
+  static const darkPrimary = Color(0xFF1D4A30);
+  static const secondary = Color(0xFFEA7451);
+  static const darkSecondary = Color(0xFFFF9A75);
   static const onPrimary = Color(0xFFFAFAF6);
+  static const darkOnPrimary = Color(0xFFDCE9DF);
+  static const onSecondary = Color.fromARGB(255, 7, 7, 7);
 
   static const lightBackground = Color(0xFFF8F7F1);
   static const lightForeground = Color(0xFF133924);
@@ -36,8 +41,15 @@ abstract final class AppTheme {
           seedColor: AppColors.primary,
           brightness: brightness,
         ).copyWith(
-          primary: AppColors.primary,
-          onPrimary: AppColors.onPrimary,
+          primary: brightness == Brightness.light
+              ? AppColors.primary
+              : AppColors.darkPrimary,
+          secondary: brightness == Brightness.light
+              ? AppColors.secondary
+              : AppColors.darkSecondary,
+          onPrimary: brightness == Brightness.light
+              ? AppColors.onPrimary
+              : AppColors.darkOnPrimary,
           surface: background,
           onSurface: foreground,
         );

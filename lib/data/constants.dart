@@ -22,3 +22,5 @@ class KTextStyle {
 abstract final class AppStrings {
   static const String appName = "Skillz Log";
 }
+
+enum AuthMode { signIn, createAccount }

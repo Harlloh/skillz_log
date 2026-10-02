@@ -3,7 +3,6 @@ import 'package:skillz_log/auth/auth_gate.dart';
 import 'package:skillz_log/data/app_theme.dart';
 import 'package:skillz_log/data/constants.dart';
 import 'package:skillz_log/data/theme_controller.dart';
-import 'package:skillz_log/pages/splash_screen.dart';
 
 void main() {
   runApp(const MyApp());
@@ -20,7 +19,8 @@ class MyApp extends StatelessWidget {
         title: AppStrings.appName,
         theme: AppTheme.light,
         darkTheme: AppTheme.dark,
-        themeMode: selectedThemeMode, //this is also equals to AppThemeController.mode.value
+        themeMode:
+            selectedThemeMode, //this is also equals to AppThemeController.mode.value
         debugShowCheckedModeBanner: false,
         home: AuthGate(),
       ),

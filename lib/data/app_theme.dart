@@ -5,6 +5,8 @@ import 'package:flutter/material.dart';
 abstract final class AppColors {
   static const primary = Color(0xFF133924);
   static const darkPrimary = Color(0xFF1D4A30);
+  static const lightTextPrimary = primary;
+  static const darkTextPrimary = Colors.white;
   static const secondary = Color(0xFFEA7451);
   static const darkSecondary = Color(0xFFFF9A75);
   static const onPrimary = Color(0xFFFAFAF6);
@@ -16,6 +18,9 @@ abstract final class AppColors {
 
   static const darkBackground = Color(0xFF0B1D14);
   static const darkForeground = Color(0xFFF6F5EE);
+
+  static Color textPrimary(Brightness brightness) =>
+      brightness == Brightness.light ? lightTextPrimary : darkTextPrimary;
 }
 
 abstract final class AppTheme {

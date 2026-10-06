@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:skillz_log/data/app_theme.dart';
 import 'package:skillz_log/data/constants.dart';
+import 'package:skillz_log/pages/home_screen.dart';
+import 'package:skillz_log/utils/appNavigator.dart';
 import 'package:skillz_log/utils/utils.dart';
 
 //
@@ -31,6 +34,7 @@ class _AuthFormWidgetState extends State<AuthFormWidget> {
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     final colors = theme.colorScheme;
+    final textPrimary = AppColors.textPrimary(theme.brightness);
 
     Future<void> _submitEmailAuth() async {
       setState(() {
@@ -54,6 +58,8 @@ class _AuthFormWidgetState extends State<AuthFormWidget> {
       } else {
         // normal create account
       }
+        AppNavigator.replace(context, HomeScreen());
+
     }
 
     Future<void> _submitGoogleAuth() async {
@@ -63,6 +69,7 @@ class _AuthFormWidgetState extends State<AuthFormWidget> {
       } else {
         // normal create account
       }
+      AppNavigator.replace(context, HomeScreen());
     }
 
     return Form(
@@ -110,9 +117,9 @@ class _AuthFormWidgetState extends State<AuthFormWidget> {
                 ),
                 floatingLabelBehavior: FloatingLabelBehavior.always,
               ),
-              validator: (value) {
-                return emailValidator(value);
-              },
+              // validator: (value) {
+              //   return emailValidator(value);
+              // },
             ),
             SizedBox(height: 30),
             TextFormField(
@@ -139,13 +146,13 @@ class _AuthFormWidgetState extends State<AuthFormWidget> {
                 ),
               ),
               obscureText: !showPassword,
-              validator: (value) {
-                return passwordValidator(
-                  value,
-                  isCreateAccount:
-                      widget.selectedMode == AuthMode.createAccount,
-                );
-              },
+              // validator: (value) {
+              //   return passwordValidator(
+              //     value,
+              //     isCreateAccount:
+              //         widget.selectedMode == AuthMode.createAccount,
+              //   );
+              // },
             ),
             SizedBox(height: 50),
             SizedBox(
@@ -161,7 +168,10 @@ class _AuthFormWidgetState extends State<AuthFormWidget> {
                     borderRadius: BorderRadius.circular(10),
                   ),
                 ),
-                child: Text(widget.selectedMode.label),
+                child: Text(
+                  widget.selectedMode.label,
+                  style: TextStyle(color: Colors.black),
+                ),
               ),
             ),
             const SizedBox(height: 24),
@@ -192,12 +202,37 @@ class _AuthFormWidgetState extends State<AuthFormWidget> {
                   style: TextStyle(fontSize: 14, fontWeight: FontWeight.w500),
                 ),
                 style: OutlinedButton.styleFrom(
+                  foregroundColor: textPrimary,
                   padding: const EdgeInsets.symmetric(vertical: 14),
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(14),
                   ),
                 ),
               ),
+            ),
+            SizedBox(height: 30),
+            SizedBox(
+              width: double.infinity,
+              child: TextButton.icon(
+                onPressed: _submitGoogleAuth,
+                icon: Icon(Icons.person_outline_rounded),
+                label: const Text(
+                  'Continue as Guest',
+                  style: TextStyle(fontSize: 14, fontWeight: FontWeight.w500),
+                ),
+                style: TextButton.styleFrom(
+                  foregroundColor: textPrimary,
+                  padding: const EdgeInsets.symmetric(vertical: 14),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(14),
+                  ),
+                ),
+              ),
+            ),
+            Text(
+              'Guest progress stays on this device, with 1 active skill. Sign in later to back it up.',
+              textAlign: TextAlign.center,
+              style: TextStyle(fontSize: 12.0,),
             ),
             SizedBox(height: 50),
           ],

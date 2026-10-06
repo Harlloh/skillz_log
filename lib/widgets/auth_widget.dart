@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:skillz_log/data/app_theme.dart';
 import 'package:skillz_log/data/constants.dart';
 import 'package:skillz_log/widgets/auth_form_widget.dart';
 
@@ -14,6 +15,7 @@ class _AuthWidgetState extends State<AuthWidget> {
   Widget _buildTab(String label, AuthMode mode, ThemeData theme) {
     final selected = _selectedMode == mode;
     final colors = theme.colorScheme;
+    final textPrimary = AppColors.textPrimary(theme.brightness);
 
     return Expanded(
       child: InkWell(
@@ -29,7 +31,7 @@ class _AuthWidgetState extends State<AuthWidget> {
                   label,
                   style: theme.textTheme.titleMedium?.copyWith(
                     color: selected
-                        ? colors.primary
+                        ? textPrimary
                         : colors.onSurface.withValues(alpha: 0.65),
                   ),
                 ),

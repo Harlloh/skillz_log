@@ -10,7 +10,7 @@ class AuthController extends ValueNotifier<AuthStatus> {
   Future<void> initialize() async {
     //replace this with the real session check later
     await Future<void>.delayed(Duration(milliseconds: 1200));
-    value = AuthStatus.unauthenticated;
+    value = AuthStatus.authenticated;
   }
 
   void markAsAuthenticated() {

@@ -1,3 +1,5 @@
+import 'package:flutter/material.dart';
+
 String? passwordValidator(String? value, {required bool isCreateAccount}) {
   if (value == null || value.isEmpty) {
     return 'Password is required';

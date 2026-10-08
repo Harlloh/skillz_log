@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:skillz_log/auth/auth_controller.dart';
+import 'package:skillz_log/data/constants.dart';
 import 'package:skillz_log/pages/auth_screen.dart';
 import 'package:skillz_log/pages/home_screen.dart';
 import 'package:skillz_log/pages/splash_screen.dart';
@@ -20,15 +21,19 @@ class _AuthGateState extends State<AuthGate> {
 
   @override
   Widget build(BuildContext context) {
-    return ValueListenableBuilder<AuthStatus>( //this rebuilds the entire ui based off the users status.
+    return ValueListenableBuilder<AuthStatus>(
+      //this rebuilds the entire ui based off the users status.
       valueListenable: authController,
       builder: (context, status, _) {
         switch (status) {
           case AuthStatus.checking:
             return const SplashScreen();
 
+          case AuthStatus.guest:
+            return const HomeScreen(accountType: AccType.guest);
+
           case AuthStatus.authenticated:
-            return const HomeScreen();
+            return const HomeScreen(accountType: AccType.notGuest);
 
           case AuthStatus.unauthenticated:
             return const AuthScreen();

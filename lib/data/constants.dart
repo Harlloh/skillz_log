@@ -32,3 +32,32 @@ enum AuthMode {
   final String key;
   final String label;
 }
+
+enum AccType {
+  guest(
+    key: 'guest',
+    label: "Guest",
+    icon: Icons.phone_android,
+    desc: 'On this device',
+  ),
+  notGuest(
+    key: 'cloudAcc',
+    label: "Synced",
+    icon: Icons.cloud_done_outlined,
+    desc: 'Synced across devices',
+  );
+
+  const AccType({
+    required this.key,
+    required this.label,
+    required this.icon,
+    required this.desc,
+  });
+
+  final String key;
+  final String label;
+  final IconData icon;
+  final String desc;
+
+  dynamic get displayText => '$label . $desc';
+}

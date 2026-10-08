@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-enum AuthStatus { checking, authenticated, unauthenticated }
+enum AuthStatus { checking, authenticated, unauthenticated, guest }
 
 class AuthController extends ValueNotifier<AuthStatus> {
   //AuthController inherits the behavior of ValueNotifier(stores values and notifiers the listner when the value changes)
@@ -10,7 +10,11 @@ class AuthController extends ValueNotifier<AuthStatus> {
   Future<void> initialize() async {
     //replace this with the real session check later
     await Future<void>.delayed(Duration(milliseconds: 1200));
-    value = AuthStatus.authenticated;
+    value = AuthStatus.unauthenticated;
+  }
+
+  void continueAsGuest() {
+    value = AuthStatus.guest;
   }
 
   void markAsAuthenticated() {

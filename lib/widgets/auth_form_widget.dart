@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:skillz_log/auth/auth_controller.dart';
 import 'package:skillz_log/data/app_theme.dart';
 import 'package:skillz_log/data/constants.dart';
-import 'package:skillz_log/pages/home_screen.dart';
-import 'package:skillz_log/utils/appNavigator.dart';
-import 'package:skillz_log/utils/utils.dart';
 
 //
 class AuthFormWidget extends StatefulWidget {
@@ -58,8 +56,7 @@ class _AuthFormWidgetState extends State<AuthFormWidget> {
       } else {
         // normal create account
       }
-        AppNavigator.replace(context, HomeScreen());
-
+      authController.markAsAuthenticated();
     }
 
     Future<void> _submitGoogleAuth() async {
@@ -69,7 +66,7 @@ class _AuthFormWidgetState extends State<AuthFormWidget> {
       } else {
         // normal create account
       }
-      AppNavigator.replace(context, HomeScreen());
+      authController.markAsAuthenticated();
     }
 
     return Form(
@@ -214,7 +211,7 @@ class _AuthFormWidgetState extends State<AuthFormWidget> {
             SizedBox(
               width: double.infinity,
               child: TextButton.icon(
-                onPressed: _submitGoogleAuth,
+                onPressed: () => authController.continueAsGuest(),
                 icon: Icon(Icons.person_outline_rounded),
                 label: const Text(
                   'Continue as Guest',
@@ -232,7 +229,7 @@ class _AuthFormWidgetState extends State<AuthFormWidget> {
             Text(
               'Guest progress stays on this device, with 1 active skill. Sign in later to back it up.',
               textAlign: TextAlign.center,
-              style: TextStyle(fontSize: 12.0,),
+              style: TextStyle(fontSize: 12.0),
             ),
             SizedBox(height: 50),
           ],

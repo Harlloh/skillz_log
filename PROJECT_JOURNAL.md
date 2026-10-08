@@ -17,6 +17,10 @@ encountered, and ideas worth turning into public posts.
 Skillz Log is a learning journal intended to help users break skills into small
 steps, record learning sessions, and make progress visible.
 
+Users can start as guests to reduce sign-up friction. Guests can track one
+skill locally. Creating an account backs up that skill and unlocks multiple
+skills.
+
 Current tagline:
 
 > Small steps, visible progress.
@@ -106,7 +110,8 @@ implemented interface:
 
 | Role | Light | Dark |
 |---|---|---|
-| Primary | `#133924` | `#133924` |
+| Primary | `#133924` | `#1D4A30` |
+| Primary text | `#133924` | `#FFFFFF` |
 | On primary | `#FAFAF6` | `#FAFAF6` |
 | Background | `#F8F7F1` | `#0B1D14` |
 | Foreground | `#133924` | `#F6F5EE` |
@@ -202,6 +207,16 @@ manually sets `AuthStatus.unauthenticated`. The temporary Sign in button calls
 
 Future integration should replace the manual values with a real session
 provider while preserving the AuthGate interface.
+
+### Planned guest access
+
+- Guests can enter without creating an account.
+- Guest data is stored locally and limited to one skill.
+- Account creation backs up the guest skill and removes the one-skill limit.
+- Migration must preserve the guest's existing progress.
+
+Decision: use a low-friction guest path, then prompt for an account when the
+user wants cloud backup or another skill.
 
 ### Launcher icon
 
@@ -314,6 +329,9 @@ screen is selected from authentication state.
 ## Current technical debt
 
 - Replace the mocked authentication check with a real session provider.
+- Add a guest session state and local persistence.
+- Enforce the one-skill guest limit in the data layer.
+- Migrate guest data safely when an account is created.
 - Reduce the 12-second splash delay if it is accidental.
 - Replace the blurry raster logo with a vector-derived source.
 - Decide whether users need System, Light, and Dark choices or only a binary
@@ -334,9 +352,10 @@ Implement real authentication while keeping the existing state flow:
 1. Choose and initialize the authentication provider.
 2. Create an `AuthService` responsible for session operations.
 3. Make `AuthController.initialize()` restore the real session.
-4. Replace the temporary sign-in button with validated fields.
-5. Listen for sign-in, token refresh, expiration, and sign-out events.
-6. Add loading and error states without placing this logic in SplashScreen.
+4. Add guest sessions with local storage and a one-skill limit.
+5. Back up guest data during account creation.
+6. Listen for sign-in, token refresh, expiration, and sign-out events.
+7. Add loading and error states without placing this logic in SplashScreen.
 
 ## Content ideas
 
@@ -410,4 +429,4 @@ Copy this section for future updates:
 
 ---
 
-Last updated: 2026-09-24 13:40 WAT
+Last updated: 2026-10-06 WAT

@@ -1,7 +1,7 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:skillz_log/data/constants.dart';
 import 'package:skillz_log/data/theme_controller.dart';
-import 'package:skillz_log/pages/auth_screen.dart';
 import 'package:skillz_log/pages/profile_screen.dart';
 import 'package:skillz_log/utils/appNavigator.dart';
 
@@ -154,7 +154,7 @@ class HeaderWidget extends StatelessWidget {
                               minimumSize: const Size(48, 48),
                             ),
                             icon: Icon(
-                              Icons.person_outline_rounded,
+                              CupertinoIcons.person,
                               color: colors.onPrimary,
                             ),
                           ),

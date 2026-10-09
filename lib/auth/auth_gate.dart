@@ -3,6 +3,7 @@ import 'package:skillz_log/auth/auth_controller.dart';
 import 'package:skillz_log/data/constants.dart';
 import 'package:skillz_log/pages/auth_screen.dart';
 import 'package:skillz_log/pages/home_screen.dart';
+import 'package:skillz_log/pages/main_screen.dart';
 import 'package:skillz_log/pages/splash_screen.dart';
 
 class AuthGate extends StatefulWidget {
@@ -30,10 +31,10 @@ class _AuthGateState extends State<AuthGate> {
             return const SplashScreen();
 
           case AuthStatus.guest:
-            return const HomeScreen(accountType: AccType.guest);
+            return const MainScreen(accountType: AccType.guest);
 
           case AuthStatus.authenticated:
-            return const HomeScreen(accountType: AccType.notGuest);
+            return const MainScreen(accountType: AccType.notGuest);
 
           case AuthStatus.unauthenticated:
             return const AuthScreen();

@@ -18,9 +18,16 @@ abstract final class AppColors {
 
   static const darkBackground = Color(0xFF0B1D14);
   static const darkForeground = Color(0xFFF6F5EE);
+  static const lightStatsBackground = Color(0xFFFDF0D5);
+  static const darkStatsBackground = Color(0xFF173124);
 
   static Color textPrimary(Brightness brightness) =>
       brightness == Brightness.light ? lightTextPrimary : darkTextPrimary;
+
+  static Color statsBackground(Brightness brightness) =>
+      brightness == Brightness.light
+      ? lightStatsBackground
+      : darkStatsBackground;
 }
 
 abstract final class AppTheme {

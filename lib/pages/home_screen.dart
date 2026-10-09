@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:skillz_log/data/app_theme.dart';
 import 'package:skillz_log/data/constants.dart';
 import 'package:skillz_log/widgets/header_widget.dart';
 import 'package:intl/intl.dart';
+import 'package:skillz_log/widgets/stat_cell.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key, required this.accountType});
@@ -38,6 +40,21 @@ class HomeScreen extends StatelessWidget {
               style: TextStyle(color: theme.colorScheme.onPrimary),
             ),
           ),
+          Container(
+            width: double.infinity,
+            decoration: BoxDecoration(
+              color: AppColors.statsBackground(theme.brightness),
+              border: Border(bottom: BorderSide(color: theme.dividerColor)),
+            ),
+            child: const Row(
+              children: [
+                StatCell(value: '2', label: 'Active skills'),
+                StatCell(value: '8', label: 'Sessions done'),
+                StatCell(value: '1', label: 'Day streak', showDivider: false),
+              ],
+            ),
+          ),
+          SingleChildScrollView(child: Text("Holla")),
         ],
       ),
     );

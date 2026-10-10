@@ -15,7 +15,6 @@ class StatCell extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
-    final colors = theme.colorScheme;
     final textPrimary = AppColors.textPrimary(theme.brightness);
 
     return Expanded(
@@ -48,6 +47,5 @@ class StatCell extends StatelessWidget {
         ),
       ),
     );
-    ;
   }
 }

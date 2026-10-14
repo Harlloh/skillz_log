@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:skillz_log/data/app_theme.dart';
@@ -23,11 +24,35 @@ class HomeScreen extends StatelessWidget {
               children: [
                 HeaderWidget(
                   title: 'Ready for a session?',
-                  subtitle: 'Plan a skill, then log what you learn each day',
+                  // subtitle: 'Plan a skill, then log what you learn each day',
                   acctType: accountType,
                   leading: Text(
                     date,
                     style: TextStyle(color: theme.colorScheme.onPrimary),
+                  ),
+                  action: FilledButton.icon(
+                    onPressed: () {
+                      //open the quick log screen
+                    },
+                    style: FilledButton.styleFrom(
+                      backgroundColor: theme.colorScheme.onPrimary,
+                      foregroundColor: theme.colorScheme.primary,
+                      padding: const EdgeInsets.symmetric(
+                        horizontal: 8,
+                        vertical: 2,
+                      ),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(5),
+                      ),
+                    ),
+                    icon: const Icon(CupertinoIcons.bolt),
+                    label: const Text(
+                      '30-second daily log',
+                      style: TextStyle(
+                        fontSize: 12,
+                        fontWeight: FontWeight.w600,
+                      ),
+                    ),
                   ),
                 ),
                 Container(
@@ -35,7 +60,9 @@ class HomeScreen extends StatelessWidget {
                   decoration: BoxDecoration(
                     color: AppColors.statsBackground(theme.brightness),
                     border: Border(
-                      bottom: BorderSide(color: theme.dividerColor),
+                      bottom: BorderSide(
+                        color: AppColors.statsDivider(theme.brightness),
+                      ),
                     ),
                   ),
                   child: const Row(

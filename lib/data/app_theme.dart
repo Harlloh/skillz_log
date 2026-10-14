@@ -18,8 +18,11 @@ abstract final class AppColors {
 
   static const darkBackground = Color(0xFF0B1D14);
   static const darkForeground = Color(0xFFF6F5EE);
-  static const lightStatsBackground = Color(0xFFFDF0D5);
-  static const darkStatsBackground = Color(0xFF173124);
+  // Warm stat-band colors from the home-screen visual direction.
+  static const lightStatsBackground = Color(0xFFFFF1CC);
+  static const darkStatsBackground = Color(0xFF2D291A);
+  static const lightStatsDivider = Color(0xFFD8D4C4);
+  static const darkStatsDivider = Color(0xFF465047);
 
   static Color textPrimary(Brightness brightness) =>
       brightness == Brightness.light ? lightTextPrimary : darkTextPrimary;
@@ -28,6 +31,9 @@ abstract final class AppColors {
       brightness == Brightness.light
       ? lightStatsBackground
       : darkStatsBackground;
+
+  static Color statsDivider(Brightness brightness) =>
+      brightness == Brightness.light ? lightStatsDivider : darkStatsDivider;
 }
 
 abstract final class AppTheme {

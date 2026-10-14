@@ -44,7 +44,7 @@ enum AccType {
     key: 'cloudAcc',
     label: "Synced",
     icon: Icons.cloud_done_outlined,
-    desc: 'Synced across devices',
+    desc: '',
   );
 
   const AccType({
@@ -59,5 +59,5 @@ enum AccType {
   final IconData icon;
   final String desc;
 
-  dynamic get displayText => '$label . $desc';
+  dynamic get displayText => '$label $desc';
 }

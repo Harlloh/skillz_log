@@ -131,6 +131,12 @@ class HeaderWidget extends StatelessWidget {
                           tooltip: isDarkMode
                               ? 'Use light theme'
                               : 'Use dark theme',
+                          style: IconButton.styleFrom(
+                            minimumSize: const Size.square(44),
+                            maximumSize: const Size.square(44),
+                            padding: EdgeInsets.zero,
+                            tapTargetSize: MaterialTapTargetSize.shrinkWrap,
+                          ),
                           onPressed: () {
                             AppThemeController.setDarkMode(!isDarkMode);
                           },
@@ -139,9 +145,10 @@ class HeaderWidget extends StatelessWidget {
                                 ? Icons.light_mode_outlined
                                 : Icons.dark_mode_outlined,
                             color: colors.onPrimary,
+                            size: 18,
                           ),
                         ),
-                        const SizedBox(width: 4),
+                        // const SizedBox(width: ),
                         if (acctType == AccType.notGuest)
                           IconButton(
                             tooltip: 'Open profile',
@@ -152,7 +159,10 @@ class HeaderWidget extends StatelessWidget {
                               backgroundColor: colors.onPrimary.withValues(
                                 alpha: 0.12,
                               ),
-                              minimumSize: const Size(1, 1),
+                              minimumSize: const Size.square(44),
+                              maximumSize: const Size.square(44),
+                              padding: EdgeInsets.zero,
+                              tapTargetSize: MaterialTapTargetSize.shrinkWrap,
                             ),
                             icon: Icon(
                               CupertinoIcons.person,
@@ -191,6 +201,9 @@ class HeaderWidget extends StatelessWidget {
                           fontSize: 12,
                         ),
                       ),
+                      if(action != null)
+                        action!,
+                      
               ],
             ),
           ),

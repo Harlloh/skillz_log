@@ -22,7 +22,11 @@ class StatCell extends StatelessWidget {
         padding: const EdgeInsets.all(16),
         decoration: BoxDecoration(
           border: showDivider
-              ? Border(right: BorderSide(color: theme.dividerColor))
+              ? Border(
+                  right: BorderSide(
+                    color: AppColors.statsDivider(theme.brightness),
+                  ),
+                )
               : null,
         ),
         child: Column(

@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:skillz_log/data/app_theme.dart';
 import 'package:skillz_log/data/constants.dart';
+import 'package:skillz_log/utils/utils.dart';
 import 'package:skillz_log/widgets/header_widget.dart';
 import 'package:skillz_log/widgets/stat_cell.dart';
 
@@ -21,6 +22,7 @@ class HomeScreen extends StatelessWidget {
         children: [
           SingleChildScrollView(
             child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 HeaderWidget(
                   title: 'Ready for a session?',
@@ -33,6 +35,7 @@ class HomeScreen extends StatelessWidget {
                   action: FilledButton.icon(
                     onPressed: () {
                       //open the quick log screen
+                      showQuickLogSheet(context);
                     },
                     style: FilledButton.styleFrom(
                       backgroundColor: theme.colorScheme.onPrimary,
@@ -75,6 +78,17 @@ class HomeScreen extends StatelessWidget {
                         showDivider: false,
                       ),
                     ],
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.all(9),
+                  child: Text(
+                    'Up next',
+                    textAlign: TextAlign.left,
+                    style: const TextStyle(
+                      fontWeight: FontWeight.w600,
+                      fontSize: 15,
+                    ),
                   ),
                 ),
               ],

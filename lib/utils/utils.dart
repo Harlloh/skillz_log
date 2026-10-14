@@ -1,3 +1,6 @@
+import 'package:flutter/material.dart';
+import 'package:skillz_log/widgets/quick_log.dart';
+
 String? passwordValidator(String? value, {required bool isCreateAccount}) {
   if (value == null || value.isEmpty) {
     return 'Password is required';
@@ -35,4 +38,17 @@ String? emailValidator(String? value) {
   }
 
   return null;
+}
+
+Future<void> showQuickLogSheet(BuildContext context) {
+  return showModalBottomSheet<void>(
+    context: context,
+    isScrollControlled: true,
+    useSafeArea: true,
+    backgroundColor: Colors.transparent,
+    barrierColor: Colors.black.withValues(alpha: 0.65),
+    builder: (context) {
+      return const QuickLogSheet();
+    },
+  );
 }

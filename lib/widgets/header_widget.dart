@@ -93,38 +93,42 @@ class HeaderWidget extends StatelessWidget {
                 if (acctType != null) ...[
                   Row(
                     children: [
-                      Container(
-                        padding: const EdgeInsets.symmetric(
-                          horizontal: 10,
-                          vertical: 5,
-                        ),
-                        decoration: BoxDecoration(
-                          color: colors.onPrimary.withValues(alpha: 0.12),
-                          border: Border.all(
-                            color: colors.onPrimary.withValues(alpha: 0.3),
-                          ),
-                          borderRadius: BorderRadius.circular(999),
-                        ),
-                        child: Row(
-                          mainAxisSize: MainAxisSize.min,
-                          children: [
-                            Icon(
-                              acctType!.icon,
-                              color: colors.onPrimary,
-                              size: 22,
-                            ),
-                            const SizedBox(width: 10),
-                            Text(
-                              acctType!.displayText,
-                              maxLines: 1,
-                              softWrap: false,
-                              style: theme.textTheme.bodySmall?.copyWith(
-                                color: colors.onPrimary,
+                      acctType == AccType.guest
+                          ? Container(
+                              padding: const EdgeInsets.symmetric(
+                                horizontal: 10,
+                                vertical: 5,
                               ),
-                            ),
-                          ],
-                        ),
-                      ),
+                              decoration: BoxDecoration(
+                                color: colors.onPrimary.withValues(alpha: 0.12),
+                                border: Border.all(
+                                  color: colors.onPrimary.withValues(
+                                    alpha: 0.3,
+                                  ),
+                                ),
+                                borderRadius: BorderRadius.circular(999),
+                              ),
+                              child: Row(
+                                mainAxisSize: MainAxisSize.min,
+                                children: [
+                                  Icon(
+                                    acctType!.icon,
+                                    color: colors.onPrimary,
+                                    size: 22,
+                                  ),
+                                  const SizedBox(width: 10),
+                                  Text(
+                                    acctType!.displayText,
+                                    maxLines: 1,
+                                    softWrap: false,
+                                    style: theme.textTheme.bodySmall?.copyWith(
+                                      color: colors.onPrimary,
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            )
+                          : const SizedBox.shrink(),
                       if (topRight ?? true) ...[
                         const Spacer(),
                         IconButton(
@@ -173,7 +177,7 @@ class HeaderWidget extends StatelessWidget {
                       ],
                     ],
                   ),
-                  const SizedBox(height: 52),
+                  SizedBox(height: acctType == AccType.guest ? 52 : 20),
                 ],
                 leading ?? const SizedBox.shrink(),
                 const SizedBox(height: 6),
@@ -201,9 +205,7 @@ class HeaderWidget extends StatelessWidget {
                           fontSize: 12,
                         ),
                       ),
-                      if(action != null)
-                        action!,
-                      
+                if (action != null) action!,
               ],
             ),
           ),

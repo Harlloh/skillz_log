@@ -33,6 +33,7 @@ class HeaderWidget extends StatelessWidget {
     return Container(
       width: double.infinity,
       color: colors.primary,
+      padding: EdgeInsets.fromLTRB(0, 10, 0, 0),
 
       // decoration: BoxDecoration(
       //   gradient: LinearGradient(
@@ -151,11 +152,12 @@ class HeaderWidget extends StatelessWidget {
                               backgroundColor: colors.onPrimary.withValues(
                                 alpha: 0.12,
                               ),
-                              minimumSize: const Size(48, 48),
+                              minimumSize: const Size(1, 1),
                             ),
                             icon: Icon(
                               CupertinoIcons.person,
                               color: colors.onPrimary,
+                              size: 18,
                             ),
                           ),
                       ],

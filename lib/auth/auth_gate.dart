@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:skillz_log/auth/auth_controller.dart';
 import 'package:skillz_log/data/constants.dart';
 import 'package:skillz_log/pages/auth_screen.dart';
-import 'package:skillz_log/pages/home_screen.dart';
 import 'package:skillz_log/pages/main_screen.dart';
 import 'package:skillz_log/pages/splash_screen.dart';
 

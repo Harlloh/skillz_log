@@ -40,8 +40,8 @@ String? emailValidator(String? value) {
   return null;
 }
 
-Future<void> showQuickLogSheet(BuildContext context) {
-  return showModalBottomSheet<void>(
+Future<QuickLogResult?> showQuickLogSheet(BuildContext context) {
+  return showModalBottomSheet<QuickLogResult>(
     context: context,
     isScrollControlled: true,
     useSafeArea: true,

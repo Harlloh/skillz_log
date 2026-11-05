@@ -36,7 +36,8 @@ class SkillsCard extends StatelessWidget {
       clipBehavior: Clip.antiAlias,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(20),
-        color: (Colors.white70),
+        border: Border.all(width: 0.51, color: Colors.white),
+        // color: (Colors.white70),
         boxShadow: [
           BoxShadow(
             color: Colors.black.withValues(alpha: 0.08),
@@ -47,6 +48,7 @@ class SkillsCard extends StatelessWidget {
         ],
       ),
       child: Column(
+        mainAxisSize: MainAxisSize.min,
         children: [
           Container(height: 4, width: double.infinity, color: colors.secondary),
           Padding(
@@ -84,11 +86,12 @@ class SkillsCard extends StatelessWidget {
                 ),
                 Text(
                   description,
-                  maxLines: 2,
+                  maxLines: 1,
                   overflow: TextOverflow.ellipsis,
                   style: const TextStyle(
                     color: Colors.grey,
                     overflow: TextOverflow.ellipsis,
+                    fontSize: 12,
                   ),
                 ),
                 SizedBox(height: 8),
@@ -133,15 +136,20 @@ class SkillsCard extends StatelessWidget {
                   children: [
                     Expanded(
                       flex: 2,
-                      child: ElevatedButton(
+                      child: ElevatedButton.icon(
                         onPressed: onStart,
+                        icon: Icon(
+                          Icons.play_arrow_outlined,
+                          color: Colors.white,
+                          size: 22,
+                        ),
                         style: ElevatedButton.styleFrom(
                           backgroundColor: colors.primary,
                           shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(10),
                           ),
                         ),
-                        child: const Text(
+                        label: const Text(
                           'Start session',
                           style: TextStyle(color: Colors.white),
                         ),

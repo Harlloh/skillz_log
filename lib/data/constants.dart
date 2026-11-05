@@ -61,3 +61,43 @@ enum AccType {
 
   dynamic get displayText => '$label $desc';
 }
+
+class SkillCardType {
+  final String skill;
+  final String topic;
+  final String status;
+  final String description;
+  final int session;
+  final int totalSessions;
+  final int minutes;
+  final String tryText;
+
+  const SkillCardType({
+    required this.skill,
+    required this.topic,
+    required this.description,
+    required this.status,
+    required this.session,
+    required this.totalSessions,
+    required this.minutes,
+    required this.tryText,
+  });
+}
+
+class SkillListType {
+  final String title;
+  final String skillLevel;
+  final String category;
+  final String status;
+  final int session;
+  final int totalSessions;
+
+  const SkillListType({
+    required this.title,
+    required this.skillLevel,
+    required this.category,
+    required this.status,
+    required this.session,
+    required this.totalSessions,
+  });
+}

@@ -3,8 +3,11 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:skillz_log/data/app_theme.dart';
 import 'package:skillz_log/data/constants.dart';
+import 'package:skillz_log/pages/skills_list.dart';
+import 'package:skillz_log/utils/appNavigator.dart';
 import 'package:skillz_log/utils/utils.dart';
 import 'package:skillz_log/widgets/header_widget.dart';
+import 'package:skillz_log/widgets/skill_list.dart';
 import 'package:skillz_log/widgets/skills_card.dart';
 import 'package:skillz_log/widgets/stat_cell.dart';
 
@@ -18,29 +21,49 @@ class HomeScreen extends StatelessWidget {
     final theme = Theme.of(context);
     final topInset = MediaQuery.paddingOf(context).top;
 
-    final List<Map<String, dynamic>> skills = [
-      {
-        'skill': 'Video Editing',
-        'topic': 'Timeline Editing Fundamentals',
-        'status': 'Not Started',
-        'description': 'Practice selecting takes and trimming clips.',
-        'session': 1,
-        'totalSessions': 3,
-        'minutes': 25,
-        'tryText': 'Build a 30-second sequence from five clips',
-      },
-      {
-        'skill': 'Flutter',
-        'topic': 'State Management',
-        'status': 'In Progress',
-        'description': 'Learn how to manage application state.',
-        'session': 2,
-        'totalSessions': 5,
-        'minutes': 30,
-        'tryText': 'Build a counter using Riverpod',
-      },
+    final List<SkillCardType> skills = [
+      SkillCardType(
+        skill: 'Video Editing',
+        topic: 'Timeline Editing Fundamentals',
+        status: 'Not Started',
+        description:
+            'Practice selecting takes and trimming clips.Practice selecting takes and trimming clips.Practice selecting takes and trimming clips',
+        session: 1,
+        totalSessions: 3,
+        minutes: 25,
+        tryText: 'Build a 30-second sequence from five clips',
+      ),
+
+      SkillCardType(
+        skill: 'Flutter',
+        topic: 'State Management',
+        status: 'In Progress',
+        description: 'Learn how to manage application state.',
+        session: 2,
+        totalSessions: 5,
+        minutes: 30,
+        tryText: 'Build a counter using Riverpod',
+      ),
     ];
 
+    final List<SkillListType> skillsList = [
+      SkillListType(
+        title: 'Video Editing',
+        skillLevel: 'Beginner',
+        category: 'Media',
+        status: 'In progress',
+        session: 1,
+        totalSessions: 10,
+      ),
+      SkillListType(
+        title: 'Flutter',
+        skillLevel: 'Expert',
+        category: 'Mobile Development',
+        status: 'In progress',
+        session: 2,
+        totalSessions: 14,
+      ),
+    ];
     return Scaffold(
       body: Stack(
         children: [
@@ -115,30 +138,62 @@ class HomeScreen extends StatelessWidget {
                     ),
                   ),
                 ),
+
+                // SKILLS UP NEXT SECTION
                 SizedBox(
-                  height: 350,
+                  height: 300,
                   child: ListView.builder(
                     scrollDirection: Axis.horizontal,
-                    padding: const EdgeInsets.symmetric(horizontal: 16),
                     itemCount: skills.length,
                     itemBuilder: (context, index) {
                       final skill = skills[index];
+
                       return Padding(
-                        padding: const EdgeInsets.only(bottom: 16),
-                        child: SkillsCard(
-                          skill: skill['skill'],
-                          topic: skill['topic'],
-                          status: skill['status'],
-                          description: skill['description'],
-                          session: skill['session'],
-                          totalSessions: skill['totalSessions'],
-                          minutes: skill['minutes'],
-                          tryText: skill['tryText'],
-                          onStart: () {},
-                          onViewPlan: () {},
+                        padding: const EdgeInsets.only(right: 12),
+                        child: Align(
+                          alignment: Alignment.topCenter,
+                          child: SkillsCard(
+                            skill: skill.skill,
+                            topic: skill.topic,
+                            status: skill.status,
+                            description: skill.description,
+                            session: skill.session,
+                            totalSessions: skill.totalSessions,
+                            minutes: skill.minutes,
+                            tryText: skill.tryText,
+                            onStart: () {},
+                            onViewPlan: () {},
+                          ),
                         ),
                       );
                     },
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 12),
+                  child: Column(
+                    children: [
+                      // Expanded(child: Row())
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Text(
+                            'Your skills',
+                            style: TextStyle(fontWeight: FontWeight.w600),
+                          ),
+                          if (skillsList.length > 5)
+                            TextButton(
+                              onPressed: () =>
+                                  AppNavigator.push(context, SkillsList()),
+                              child: const Text('See all'),
+                            ),
+                        ],
+                      ),
+                      SizedBox(height: 20),
+                      ...skillsList.take(5).map((skill) {
+                        return SkillListItem(skill: skill);
+                      }).toList(),
+                    ],
                   ),
                 ),
               ],

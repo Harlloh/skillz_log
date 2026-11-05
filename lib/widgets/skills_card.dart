@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:skillz_log/data/app_theme.dart';
 
 class SkillsCard extends StatelessWidget {
   const SkillsCard({
@@ -35,12 +36,17 @@ class SkillsCard extends StatelessWidget {
       // height: 900,
       clipBehavior: Clip.antiAlias,
       decoration: BoxDecoration(
+        color: AppColors.cardSurface(theme.brightness),
         borderRadius: BorderRadius.circular(20),
-        border: Border.all(width: 0.51, color: Colors.white),
-        // color: (Colors.white70),
+        border: Border.all(
+          width: 0.7,
+          color: AppColors.cardOutline(theme.brightness),
+        ),
         boxShadow: [
           BoxShadow(
-            color: Colors.black.withValues(alpha: 0.08),
+            color: Colors.black.withValues(
+              alpha: theme.brightness == Brightness.dark ? 0.18 : 0.08,
+            ),
             blurRadius: 12,
             spreadRadius: 0,
             offset: const Offset(0, 4),
@@ -64,13 +70,19 @@ class SkillsCard extends StatelessWidget {
                         maxLines: 1,
                         overflow: TextOverflow.ellipsis,
                         style: TextStyle(
-                          color: const Color.fromARGB(255, 38, 37, 37),
+                          color: AppColors.mutedText(theme.brightness),
                           fontWeight: FontWeight.w500,
                         ),
                       ),
                     ),
                     const SizedBox(width: 12),
-                    Text(status, style: TextStyle(fontSize: 12)),
+                    Text(
+                      status,
+                      style: TextStyle(
+                        fontSize: 12,
+                        color: AppColors.mutedText(theme.brightness),
+                      ),
+                    ),
                   ],
                 ),
                 Padding(
@@ -88,9 +100,8 @@ class SkillsCard extends StatelessWidget {
                   description,
                   maxLines: 1,
                   overflow: TextOverflow.ellipsis,
-                  style: const TextStyle(
-                    color: Colors.grey,
-                    overflow: TextOverflow.ellipsis,
+                  style: TextStyle(
+                    color: AppColors.mutedText(theme.brightness),
                     fontSize: 12,
                   ),
                 ),
@@ -112,7 +123,7 @@ class SkillsCard extends StatelessWidget {
                         decoration: BoxDecoration(
                           color: index < session
                               ? colors.primary
-                              : colors.surfaceContainerHighest,
+                              : AppColors.progressTrack(theme.brightness),
                           borderRadius: BorderRadius.circular(10),
                         ),
                       ),
@@ -159,6 +170,10 @@ class SkillsCard extends StatelessWidget {
                     OutlinedButton(
                       onPressed: onViewPlan,
                       style: OutlinedButton.styleFrom(
+                        foregroundColor: colors.onSurface,
+                        side: BorderSide(
+                          color: AppColors.cardOutline(theme.brightness),
+                        ),
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(10),
                         ),

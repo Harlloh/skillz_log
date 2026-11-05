@@ -226,11 +226,15 @@ class _AuthFormWidgetState extends State<AuthFormWidget> {
                 ),
               ),
             ),
-            Text(
-              'Guest progress stays on this device, with 1 active skill. Sign in later to back it up.',
-              textAlign: TextAlign.center,
-              style: TextStyle(fontSize: 12.0),
+            Padding(
+              padding: const EdgeInsets.only(bottom: 10),
+              child: Text(
+                'Guest progress stays on this device, with 1 active skill. Sign in later to back it up.',
+                textAlign: TextAlign.center,
+                style: TextStyle(fontSize: 12.0),
+              ),
             ),
+            
             SizedBox(height: 50),
           ],
         ),

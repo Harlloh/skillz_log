@@ -5,6 +5,7 @@ import 'package:skillz_log/data/app_theme.dart';
 import 'package:skillz_log/data/constants.dart';
 import 'package:skillz_log/utils/utils.dart';
 import 'package:skillz_log/widgets/header_widget.dart';
+import 'package:skillz_log/widgets/skills_card.dart';
 import 'package:skillz_log/widgets/stat_cell.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -16,6 +17,29 @@ class HomeScreen extends StatelessWidget {
     final date = DateFormat('EEEE, MMMM d').format(DateTime.now());
     final theme = Theme.of(context);
     final topInset = MediaQuery.paddingOf(context).top;
+
+    final List<Map<String, dynamic>> skills = [
+      {
+        'skill': 'Video Editing',
+        'topic': 'Timeline Editing Fundamentals',
+        'status': 'Not Started',
+        'description': 'Practice selecting takes and trimming clips.',
+        'session': 1,
+        'totalSessions': 3,
+        'minutes': 25,
+        'tryText': 'Build a 30-second sequence from five clips',
+      },
+      {
+        'skill': 'Flutter',
+        'topic': 'State Management',
+        'status': 'In Progress',
+        'description': 'Learn how to manage application state.',
+        'session': 2,
+        'totalSessions': 5,
+        'minutes': 30,
+        'tryText': 'Build a counter using Riverpod',
+      },
+    ];
 
     return Scaffold(
       body: Stack(
@@ -81,14 +105,40 @@ class HomeScreen extends StatelessWidget {
                   ),
                 ),
                 Padding(
-                  padding: const EdgeInsets.all(9),
+                  padding: const EdgeInsets.all(18),
                   child: Text(
                     'Up next',
                     textAlign: TextAlign.left,
                     style: const TextStyle(
-                      fontWeight: FontWeight.w600,
-                      fontSize: 15,
+                      fontWeight: FontWeight.w800,
+                      fontSize: 18,
                     ),
+                  ),
+                ),
+                SizedBox(
+                  height: 350,
+                  child: ListView.builder(
+                    scrollDirection: Axis.horizontal,
+                    padding: const EdgeInsets.symmetric(horizontal: 16),
+                    itemCount: skills.length,
+                    itemBuilder: (context, index) {
+                      final skill = skills[index];
+                      return Padding(
+                        padding: const EdgeInsets.only(bottom: 16),
+                        child: SkillsCard(
+                          skill: skill['skill'],
+                          topic: skill['topic'],
+                          status: skill['status'],
+                          description: skill['description'],
+                          session: skill['session'],
+                          totalSessions: skill['totalSessions'],
+                          minutes: skill['minutes'],
+                          tryText: skill['tryText'],
+                          onStart: () {},
+                          onViewPlan: () {},
+                        ),
+                      );
+                    },
                   ),
                 ),
               ],

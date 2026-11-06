@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:skillz_log/data/constants.dart';
+import 'package:skillz_log/pages/add_skill.dart';
 import 'package:skillz_log/pages/home_screen.dart';
 import 'package:skillz_log/pages/learning_screen.dart';
+import 'package:skillz_log/utils/appNavigator.dart';
 import 'package:skillz_log/widgets/app_bottom_nav.dart';
 
 class MainScreen extends StatefulWidget {
@@ -42,7 +44,7 @@ class _MainScreenState extends State<MainScreen> {
         dimension: 72,
         child: FloatingActionButton(
           onPressed: () {
-            // We will open AddSkillScreen here later.
+            AppNavigator.push(context, AddSkillScreen());
           },
           backgroundColor: Theme.of(context).colorScheme.primary,
           foregroundColor: Theme.of(context).colorScheme.onPrimary,
